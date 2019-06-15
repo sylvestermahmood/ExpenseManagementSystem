@@ -1,0 +1,212 @@
+body{
+    background-color: black;
+}
+
+.heading
+{
+    color: white;
+    background-color: black;
+    height: 40%;
+    width: 100%;
+
+}
+
+
+
+.heading_ani
+{
+    width: 100%;
+    height: 50%;
+    background-color: white;
+}
+
+.img{
+    width: 10%;
+    height: 98%;
+    -webkit-animation: spin 5s infinite linear;
+    margin-left: 45%;
+    float: left;
+}
+
+@-webkit-keyframes spin
+{
+    0% {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);}
+}
+
+
+.heading_logout
+{
+    width: 30%;
+    height: 35%;
+    float: right ;
+    color: black;
+    margin-top: 10px;
+    font-size: 18px;
+    
+}
+
+.heading_name
+{
+    height:99% ;
+    width: 70%;
+    float: left;
+    text-align: right;
+    font-size: 20px;
+}
+
+.heading_logout input
+{
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    height: 42px;
+    width: 90px;
+    font-size: 17px;
+    float: right;
+}
+
+
+.heading_txt
+{
+    width: 100%;
+    height: 50%;
+    background-color: black;
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+}
+
+.body_div
+{
+    width: 98%;
+    height: 60%;
+    background-color: white;
+    padding:  15px;
+    color: black;
+    overflow: auto;
+
+}
+
+.heading_one
+{
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    width: 99%;
+    height: 22%;
+    text-align: center;
+    font-weight: 1000;
+    margin-bottom: 15px;
+}
+
+.button_list
+{
+    width: 68%;
+    height: 18%;
+    text-align: center;
+    padding-left: 31.5%;
+    text-align: center;
+}
+
+.add_exp
+{
+    width: 150px;
+    height: 40px;
+    background-color: blue;
+    color: white;
+    border: 1px solid blue;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+.add_exp :hover
+{
+    cursor: pointer;
+}
+
+.all_cat
+{
+    width: 150px;
+    height: 40px;
+    background-color: blue;
+    color: white;
+    border: 1px solid blue;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+.gen_rep
+{
+    width: 150px;
+    height: 40px;
+    background-color: green;
+    color: white;
+    border: 1px solid green;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+.search_div
+{
+    width: 99%;
+    height: 15%;
+    text-align: center;
+}
+
+.search_div input
+{
+    height: 45px;
+    width: 450px;
+    font-size: 17px;
+    border-radius: 7px;
+}
+
+.search_div input :active
+{
+    border: 3px solid rgb(68, 207, 250)
+}
+
+.div_table
+{
+    width: 99%;
+    height: 15%;
+    margin-top: 20px;
+}
+
+.div_table table
+{
+   
+    width: 95%;
+    text-align: center;
+    margin-left: 40px;
+    font-size: 22px;
+    height: 35px;;
+    
+}
+
+
+
+
+.edit
+{
+    color: white;
+    background-color: green;
+    height: 30px;
+    border: 2px solid green;
+    width: 70px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.del
+{
+    color: white;
+    background-color: red;
+    border: 2px solid red;
+     border-radius: 5px;
+    height: 30px;
+    width: 70px;
+    font-size: 15px;
+}
+

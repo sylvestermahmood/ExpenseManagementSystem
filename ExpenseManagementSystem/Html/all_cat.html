@@ -1,0 +1,140 @@
+<html>
+    <head>
+        <title>
+            All Category
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="../CSS/all_cat.css"/>
+    </head>
+
+
+    <body>
+        <div class="heading">
+            <div class="heading_ani">
+                <div class="img">
+                  <img src="../image/pic.png"  width="95%" height="95%">
+
+                </div>
+            <div class="heading_logout">
+                    <div  id="heading_name" class="heading_name">
+                            <script>
+                         
+                                    let user = localStorage.getItem("user");
+                                    let user_obj = JSON.parse(user);
+                                 //   alert(user_obj.name);
+                                 let name = "Welcome "+user_obj.name +" !";
+                   //              alert(name);
+                   
+                                    document.getElementById("heading_name").innerHTML =  name
+                                    
+                                    
+                                    </script>
+                                    </div>
+                    <form onsubmit = "return logOut()">
+                           
+                           <input type="submit" value="LogOut">
+                           </form>
+                </div>
+
+            </div>
+            <div class="heading_txt">
+                    <form onsubmit = "return back()">
+                            <input type="submit" value="Back To DashBoard">
+                            </form>
+                    <p >
+                        Welcome to Expense Management System
+                    </p>
+            </div>
+        </div>
+            <div class="body_div">
+
+                    <div class="heading_one">
+                            <p> Add Category</p>
+                        </div>
+
+
+                        <div class="button_list">
+                                <form onsubmit = "return add_cat()">  
+                                <input class="all_cat" type="submit" value="Add Categories!">
+                                </form>
+                            </div>
+                    
+
+                            <div class="div_table">
+                                    <table border="2px"> 
+                                            <tr>
+                                                    <th>ID</th>
+                                                    <th>Description</th>
+                                                    <th>Created_On</th>
+                                        
+                                                </tr>
+
+                            <script>
+                           // let display  = e => {
+                            let specific_user = localStorage.getItem ("user");
+                    let spe_usr = JSON.parse(specific_user)
+
+                    let u_ID = spe_usr.ID;
+                    let c = u_ID.toString();
+                    
+                    let su = c + "All_Category";
+
+                                let users= localStorage.getItem(su);
+                                console.log(users);
+                                let cate = JSON.parse(users);
+                                console.log(cate);
+
+
+                                for (let i=0; i<cate.length; i++)
+                                {
+                                document.write("<tr><td>" + cate[i].ID + "</td>"+"<td>" + cate[i].Description + "</td>" + "<td>" + cate[i].Created_On + "</td></tr>");
+                                }      
+                                                           
+                            </script>                             
+                                </table>
+                            
+                    </div>
+                    
+           
+
+                    <script>
+
+
+                            const logOut = e => {
+                            
+                               location.replace("main.html")
+       
+                               return false;
+       
+                            }
+
+                            const back = e => {
+                            
+                            location.replace("all_expense.html")
+    
+                            return false;
+    
+                         }
+
+                         const add_cat = e => {
+                            
+                            location.replace("add_cat.html")
+    
+                            return false;
+    
+                         }
+
+                         
+                        
+
+                         </Script>  
+           
+            
+        
+
+
+    </body>
+
+</html>
+
+

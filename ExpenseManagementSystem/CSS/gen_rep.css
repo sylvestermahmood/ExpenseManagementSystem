@@ -1,0 +1,143 @@
+body{
+    background-color: white;
+}
+
+
+.body_div
+{
+    width: 98%;
+    height: 60%;
+    background-color: white;
+    padding:  15px;
+    color: black;
+    overflow: auto;
+
+}
+
+.heading_one
+{
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    width: 99%;
+    height: 22%;
+    text-align: center;
+    font-weight: 1000;
+    margin-bottom: 15px;
+}
+
+.button_list
+{
+    width: 99%;
+    height: 18%;
+    text-align: center;
+    padding-left: 31.5%;
+}
+
+.add_exp
+{
+    width: 150px;
+    height: 40px;
+    background-color: blue;
+    color: white;
+    border: 1px solid blue;
+    border-radius: 10px;
+    font-size: 17px;
+    margin-top: 15px;
+}
+
+.add_exp :hover
+{
+    cursor: pointer;
+}
+
+.all_cat
+{
+    width: 150px;
+    height: 40px;
+    background-color: blue;
+    color: white;
+    border: 1px solid blue;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+.gen_rep
+{
+    width: 150px;
+    height: 40px;
+    background-color: green;
+    color: white;
+    border: 1px solid green;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+.search_div
+{
+    width: 99%;
+    height: 15%;
+    text-align: center;
+}
+
+.search_div input
+{
+    height: 45px;
+    width: 450px;
+    font-size: 17px;
+    border-radius: 7px;
+}
+
+.search_div input :active
+{
+    border: 3px solid rgb(68, 207, 250)
+}
+
+.div_table
+{
+    width: 99%;
+    height: 15%;
+    margin-top: 20px;
+}
+
+.div_table table
+{
+   
+    width: 95%;
+    text-align: center;
+    margin-left: 40px;
+    font-size: 22px;
+    height: 35px;;
+    
+}
+
+
+
+.heading_div
+{
+ 
+    height: 80px;
+    width: 100%;
+}
+
+
+.heading_date
+{
+ 
+    height: 30%;
+    width: 15%;
+    float: left;
+    font-size: 20px;
+    margin-left: 5%;
+    margin-top: 1%;
+   
+}
+
+.heading
+{
+
+    height: 60%;
+    width: 20%;
+    float: right;
+    margin-right: 40%;
+    font-size: 25x;
+}

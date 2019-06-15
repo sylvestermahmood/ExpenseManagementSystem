@@ -1,0 +1,329 @@
+<html>
+    <head>
+        <title>
+            All Expense
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="../CSS/all_expense.css"/>
+    </head>
+
+
+    <body>
+        <div class="heading">
+            <div class="heading_ani">
+                <div class="img">
+                  <img src="../image/pic.png"  width="95%" height="95%">
+
+                </div>
+            <div  id="heading_logout" class="heading_logout">
+                    <div  id="heading_name" class="heading_name">
+                    <script>
+                 
+                            let user = localStorage.getItem("user");
+                            let user_obj = JSON.parse(user);
+                         //   alert(user_obj.name);
+                         let name = "Welcome "+user_obj.name +" !";
+           //              alert(name);
+           
+                            document.getElementById("heading_name").innerHTML =  name
+                            
+                            
+                            </script>
+                            </div>
+                    <form onsubmit = "return logOut()">
+                <input type="submit" value="LogOut">
+                </form>
+                </div>
+
+            </div>
+            <div class="heading_txt">
+                    <p >
+                        Welcome to Expense Management System
+                    </p>
+            </div>
+        </div>
+            <div class="body_div">
+                <div class="heading_one">
+                    <p> All Expenses</p>
+                </div>
+
+                <div class="button_list">
+                    <table>
+                        <tr>
+                            <td>
+                                    <form onsubmit = "return add_exp()">
+                                            <input class="add_exp" type="submit" value="Add Expenses!">
+                                    </form>
+                            </td>
+
+                            <td>
+                                    <form onsubmit = "return all_cat()">
+                                            <input class="all_cat" type="submit" value="All Categories!">
+                                    </form>
+
+                            </td>
+
+                            <td>
+                                    <form onsubmit = "return gen_rep()">
+                                            <input class="gen_rep" type="submit" value="Generates Report">
+                                     </form>
+
+                                    
+                            </td>
+                        </tr>
+                    </table>
+                        
+
+                 
+
+                   
+                </div>
+
+                <div class="search_div">
+                    <input id="myInput" type="text" onkeyup="searching()"   placeholder="   Search by Category.....">
+                </div>
+                  
+                <div class="div_table">
+                        <table id="myTable" border="1px"> 
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Category</th>
+                                    <th>Created On</th>
+                                    <th> Actions</th>
+                                </tr>
+
+
+                    <script>
+                    let specific_user = localStorage.getItem ("user");
+                    let spe_usr = JSON.parse(specific_user)
+
+                    let u_ID = spe_usr.ID;
+                    let c2 = u_ID.toString();
+                    
+                    let su = c2 + "All_Exp";
+                            
+                            let users= localStorage.getItem(su);
+                          //  console.log(users);
+                            let cate = JSON.parse(users);
+                         //   console.log(cate);
+
+                
+                            for (let i=0; i<cate.length; i++)
+                            {
+                            document.write("<tr><td>" + cate[i].ID + "</td>"+"<td>" + cate[i].Description + "</td>" +
+                             "<td>" + cate[i].Amount + "</td><td>" + cate[i].Category + "</td><td>" + cate[i].Created_On + 
+                             "</td><td>" + "<input class='edit' type='button' value='edit' onclick='editing(this)'> " +
+                             " <input class='del' type='button' value='Delete' onclick='deleting(this)'>  " + "</td><tr>");
+                                
+                            } 
+
+                            function deleting(r)
+                            { 
+                                var i = r.parentNode.parentNode.rowIndex;
+                                 document.getElementById("myTable").deleteRow(i);
+                                
+                                 alert(i)
+                             
+                               empty = []
+                               l=0;
+                               var table = document.getElementById('myTable');
+                                for (var r = 0, n = table.rows.length; r < n; r++) {
+                                    for (var c = 0, m = table.rows[r].cells.length; c < m; c++) {
+                                        empty[l] = (table.rows[r].cells[c].innerHTML);
+                                        l++
+                                    }
+                                }
+ 
+                                console.log(empty)  
+
+                                empty1 = []
+                                m=0
+                             for (k=6; k<empty.length; k++)
+                                {
+                                    empty1[m] = empty[k]
+                                    m++
+                                    k=k+5
+                                }
+                                console.log(empty1)
+               
+
+                            let users= localStorage.getItem(su);
+                    
+                            let cate = JSON.parse(users);
+
+                                for (j=0; j<cate.length; j++)
+                                {
+                                    if(cate[j].ID == empty1[j] )
+                                    {
+                                    }
+                                    else if(cate[j].ID != empty1[j] ){
+                   
+                                        u1 = cate.splice(j, 1)
+                                    }
+
+                                 }
+                      console.log(cate)
+
+                                 localStorage.removeItem(su)
+                                 a = localStorage.setItem(su, JSON.stringify(cate));
+
+                        //         console(a)
+
+
+
+                                return false
+
+                
+                            }     
+
+
+                            /*EDITING*/
+                            function editing(r)
+                            { 
+                                var i = r.parentNode.parentNode.rowIndex;
+                          //      alert(i)
+                                // document.getElementById("myTable").deleteRow(i);
+                                
+                                                         
+                               empty = []
+                               l=0;
+                               var table = document.getElementById('myTable');
+                                for (var r = 0, n = table.rows.length; r < n; r++) {
+                                    for (var c = 0, m = table.rows[r].cells.length; c < m; c++) {
+                                        empty[l] = (table.rows[r].cells[c].innerHTML);
+                                        l++
+                                    }
+                                }
+                               
+                                console.log(empty)  
+
+                                empty1 = []
+                                m=0
+                             for (k=6; k<empty.length; k++)
+                                {
+                                    empty1[m] = empty[k]
+                                    m++
+                                    k=k+5
+                                }
+                                console.log(empty1)
+                                
+                          //      alert("33333333333" + empty1.length)
+                                k=1;
+                              let   j=0
+                                for (j=0; j<i; j++)
+                                {
+                                    if(i == k)
+                                    {
+                                        break;
+                                    }
+                                   
+                                 k=k+2; 
+                                         
+                                }
+                           //     alert(j)
+          
+                                let cat = localStorage.getItem(su)
+                                let A_E = JSON.parse(cat)
+                                let a = A_E[j]
+                                console.log(a)
+
+                                localStorage.setItem("Edit", JSON.stringify(a));
+
+                                location.replace("edit.html")
+
+
+                                return false
+
+                
+                            }     
+                                          
+                                            
+                </script>       
+
+
+
+
+                
+                    </table>
+                </div>
+
+                    </div>
+                    
+           
+
+
+                    <script>
+                     const logOut = e => {
+                     
+                        location.replace("main.html")
+
+                        return false;
+
+                     }
+
+
+                     const add_exp = e => {
+                     
+                     location.replace("add_exp.html")
+
+                     return false;
+
+                  }
+
+
+                  const all_cat = e => {
+                     
+                     location.replace("all_cat.html")
+
+                     return false;
+                  }
+                     const gen_rep = e => {
+
+                     
+                     location.replace("gen_rep.html")
+
+                     return false;
+
+                  }
+
+
+                  const searching = e =>
+                  {
+                    
+                        let input, filter, table, tr, td, i, txtValue;
+                        input = document.getElementById("myInput");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[3];
+                            if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                            }       
+                        }
+
+                  }
+
+               
+
+
+
+                    
+                    
+                    </script>
+
+           
+            
+        
+
+
+    </body>
+
+</html>

@@ -1,0 +1,166 @@
+<html>
+    <head>
+        <title>
+            Add Category
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="../CSS/add_cat.css"/>
+    </head>
+
+
+    <body>
+        <div class="heading">
+            <div class="heading_ani">
+                <div class="img">
+                  <img src="../image/pic.png"  width="95%" height="95%">
+
+                </div>
+            <div class="heading_logout">
+                    <div  id="heading_name" class="heading_name">
+                    </div>
+
+                    
+                    <form onsubmit = "return logOut()">
+                                                       <input type="submit" value="LogOut">
+                           </form>
+                </div>
+
+            </div>
+            <div class="heading_txt">
+                    <form onsubmit = "return back()">
+                            <input type="submit" value="Back To DashBoard">
+                            </form>
+                    <p >
+                        Welcome to Expense Management System
+                    </p>
+            </div>
+        </div>
+            <div class="body_div">
+
+                    <div class="heading_one">
+                            <p> Add Category</p>
+                        </div>
+
+                        
+                        <label> Enter Category Name : </label> <br> <br>
+                        <input class="body_div1" id="Cat_name" required="required" type="text" name="text"  placeholder="    Enter Category Name"/>
+                        <br/><br/><br/>
+
+
+                        <div class="button_list">
+                                <form onsubmit="return adding()">
+                                <input class="all_cat" type="submit" value="Add">
+                            </form>
+             
+                            </div>
+
+                          
+                            <br>
+
+                    </div>
+                    
+                    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+                    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+                    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
+                  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
+                  
+
+                    <script>
+                      // Initialize Firebase
+                      var config = {
+                        apiKey: "AIzaSyAxZjbs0_2A-0w0lZE2c-lYPa2Afx7ikcc",
+                        authDomain: "expensemanagementsystem-f5c07.firebaseapp.com",
+                        databaseURL: "https://expensemanagementsystem-f5c07.firebaseio.com",
+                        projectId: "expensemanagementsystem-f5c07",
+                        storageBucket: "expensemanagementsystem-f5c07.appspot.com",
+                        messagingSenderId: "708657033365"
+                      };
+                      
+                      firebase.initializeApp(config);
+                    </script>
+
+                    <script>
+                            const logOut = e => {
+                            
+                               location.replace("main.html")
+       
+                               return false;
+       
+                            }
+
+                            const back = e => {
+                            
+                            location.replace("all_expense.html")
+    
+                            return false;
+    
+                         }
+
+                         let adding = e => {
+                           
+                            // e.preventDefault();
+                        //   e.stopPropagation();
+
+                            /* Random Id */
+                            let min = 1;
+                            let max = 99999;
+                  
+                            /* Geting Current Date */
+                                let rightNow = new Date();
+                                let h = rightNow.getHours();
+                                let m = rightNow.getMinutes();
+                                let s = rightNow.getSeconds();
+                                let y = rightNow.getFullYear();
+                                let m1 = rightNow.getMonth();
+                                let d = rightNow.getDate();
+                                let session = 'AM';
+                                
+                                if (h > 12) {
+                                    h = h - 12;
+                                    session = 'PM';
+                                }
+
+                                /*Adding Category */
+                    let ID = Math.floor(Math.random() * (max * min) + min);
+                    let Created_On = d + " / " + m1 + " / " + y + ",  " + h  + " : "  +  m + " : " + s + session ;   
+                    let Description = document.querySelector("#Cat_name").value;
+                   
+                   
+                    var db = firebase.firestore();
+                    db.collection("Categories")
+                    .doc()
+                    .set({
+                    ID,
+                    Description,
+                    Created_On
+                    })
+                    .then(function() {
+                        swal("Sucessfully ", "Added", "success");
+                        console.log("Document successfully written!");
+                    })
+                    .catch(function(error) {
+                        swal("Error", error, "error");
+                        console.error("Error writing document: ", error);
+                    });
+
+                
+                    return false;
+
+  };  
+                    
+                
+               
+
+           
+
+
+
+</Script>  
+            
+        
+
+
+    </body>
+
+</html>

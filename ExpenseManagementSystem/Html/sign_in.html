@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title>
+            Sign In
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="../CSS/sign_in.css"/>
+    </head>
+
+
+    <body>
+        <div class="heading">
+            <div class="heading_ani">
+                <div class="img">
+                  <img src="../image/pic.png"  width="95%" height="95%">
+
+                </div>
+
+            </div>
+            <div class="heading_txt">
+                    <p >
+                        Welcome to Expense Management System
+                    </p>
+            </div>
+
+            <div class="body_div">
+                    <form onsubmit = "return onLogIn()">
+                   <br/><br/><br/>
+                     <label> Enter Email : </label> <br>
+                    <input class="body_div1" id="email" required="required" type="email" name="email"  placeholder="    Enter Email"/>
+                    <br/><br/><br/>
+
+                    <label> Enter Password : </label> <br>
+                    <input class="body_div1"  id="password" required="required" type="password" name="password"  placeholder="   Enter Password"/>
+                    <br/><br/> <br/>
+
+                    <div class="button">
+                                                      <br>
+        
+                            <input class="sign_in" type="submit" value="Sign in">
+                    </div>
+                    </form>
+                </div> 
+            
+        </div>
+
+
+
+
+        <script>
+        
+        const onLogIn = e => {
+          //  alert("666666666666666666666666666666666666666")
+  const email = document.querySelector("#email").value;
+  const password = document.querySelector("#password").value;
+  let users = localStorage.getItem("users");
+  if (users !== null) {
+    users = JSON.parse(users);
+  } else {
+    users = [];
+  }
+
+  const payload = {
+    email,
+    password
+  };
+
+  let result = users.filter(user => {
+    if (user.email == email && user.password == password) {
+      return true;
+    }
+  });
+  if (result.length) {
+    localStorage.setItem("user", JSON.stringify(result[0]));
+   location.replace ("all_expense.html")
+  } else {
+    alert("ERROR!");
+  }
+  return false;
+};
+
+
+
+</script>
+
+    </body>
+
+</html>

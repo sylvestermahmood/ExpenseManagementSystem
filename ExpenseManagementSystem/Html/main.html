@@ -1,0 +1,135 @@
+<html>
+    <head>
+        <title>
+            Welcome to Expense Management System
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="../CSS/main.css"/>
+    </head>
+
+
+    <body>
+        <div class="heading">
+            <div class="heading_ani">
+                <div class="img">
+                  <img src="../image/pic.png"  width="95%" height="95%">
+
+                </div>
+
+            </div>
+            <div class="heading_txt">
+                    <p >
+                        Welcome to Expense Management System
+                    </p>
+            </div>
+
+            <div class="body_div">
+                    <form onsubmit = "return onSignUp()">
+                    <label> Enter Name : </label> <br>
+                    <input  class="body_div1" id="name" required="required" type="text" name="name"  placeholder="  Enter Name"/>
+                    <br/><br/><br>
+
+
+                    <label> Enter Email : </label> <br>
+                    <input class="body_div1" id="email" required="required" type="email" name="email"  placeholder="    Enter Email"/>
+                    <br/><br/><br/>
+
+                    <label> Enter Password : </label> <br>
+                    <input class="body_div1" id="password" required="required" type="password" name="password"  placeholder="   Enter Password"/>
+                    <br/><br/> <br/>
+
+                    <div class="button">
+                            <input  class="sign_up" type="submit" value="Sign up">
+
+                            <br>
+                    </form>
+                            <p> _____OR_____</p>
+
+                            <br>
+                            <form onsubmit = "return onSignIn()">
+
+                            <input class="sign_in" type="submit" value="Sign in">
+
+                            </form>
+                    </div>
+                    
+            </div>
+
+
+           
+            
+        </div>
+
+
+
+
+
+
+
+
+
+   
+         
+        <script>
+            
+                const onSignUp = e => 
+                {
+                    let min = 1;
+                    let max = 99999;
+                    let ID = Math.floor(Math.random() * (max * min) + min);
+                    let name = document.querySelector("#name").value;
+                    let email = document.querySelector("#email").value;
+                    let password = document.querySelector("#password").value;      
+   
+                    
+                    
+                    let users = localStorage.getItem("users")
+                  
+                   if(users == null)
+                   {
+                        users = [];
+                    }
+                    else
+                    {
+                        users = JSON.parse(users);
+                    }
+                    let payload = {
+                        ID,
+                        name,
+                        email,
+                        password
+                    };
+    
+                   console.log(payload)
+    
+                    users.push(payload)
+    
+                    console.log(users)
+    
+                    users = JSON.stringify(users)
+    
+                    localStorage.setItem("users", users)
+                    localStorage.setItem("user", JSON.stringify(payload));
+    
+                  //  windows.location = "../dashboard/dashboard.html"
+                //  window.location = "all_expense.html"
+                  location.replace("all_expense.html")
+                
+                    
+                
+                return false;
+                }
+
+                const onSignIn = e => 
+                {
+                    
+                    location.replace("sign_in.html")
+
+                    return false;
+                }
+            </script>
+
+
+    </body>
+
+</html>

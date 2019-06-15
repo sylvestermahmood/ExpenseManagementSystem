@@ -1,0 +1,216 @@
+<html>
+    <head>
+        <title>
+            Add Expense
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="../CSS/add_exp.css"/>
+    </head>
+
+
+    <body>
+        <div class="heading">
+            <div class="heading_ani">
+                <div class="img">
+                  <img src="../image/pic.png"  width="95%" height="95%">
+
+                </div>
+            <div class="heading_logout">
+                    <div  id="heading_name" class="heading_name">
+                            <script>
+                         
+                                    let user = localStorage.getItem("user");
+                                    let user_obj = JSON.parse(user);
+                                 //   alert(user_obj.name);
+                                 let name = "Welcome "+user_obj.name +" !";
+                   //              alert(name);
+                   
+                                    document.getElementById("heading_name").innerHTML =  name
+                                    
+                                    
+                                    </script>
+                                    </div>
+                    <form onsubmit = "return logOut()">
+                            
+                           <input type="submit" value="LogOut">
+                           </form>
+                </div>
+
+            </div>
+            <div class="heading_txt">
+                    <form onsubmit = "return back()">
+                           <input type="submit" value="Back To DashBoard">
+                           </form>
+                    <p >
+                        Welcome to Expense Management System
+                    </p>
+            </div>
+        </div>
+            <div class="body_div">
+
+                    <div class="heading_one">
+                            <p> Add Expenses</p>
+                        </div>
+                        <form onsubmit = "return add()">
+                    <label> Enter Description : </label> <br>
+                    <input  class="body_div1" id="Description" required="required" type="text" name="name"  placeholder="  Enter Description"/>
+                    <br/><br/><br>
+
+
+                    <label> Enter Amount : </label> <br>
+                    <input class="body_div1" id="Amount" required="required" type="number" name="number"  placeholder="    Enter Amount"/>
+                    <br/><br/><br/>
+
+                    <label> Enter Category : </label> <br>
+
+                     
+                            <select id="Select">
+                            <option> Choose a Category</option>
+                                <script>
+                                             let specific_user = localStorage.getItem ("user");
+                    let spe_usr = JSON.parse(specific_user)
+
+                    let u_ID = spe_usr.ID;
+                    let c = u_ID.toString();
+                    
+                    let su = c + "All_Category";
+                                    let users= localStorage.getItem(su);
+                                console.log(users);
+                                let cate = JSON.parse(users);
+                                console.log(cate);
+                            
+                                    for(i=0; i<cate.length; i++) {  
+                                        document.write('<option value="' + cate[i].Description +'">' + cate[i].Description + '</option>');
+                                        console.log(cate[i].Description);
+                                    }
+                                </script>
+                            </select>
+                            
+
+                    <br/><br/> <br/>
+
+                    <div class="button">
+                            <input  class="sign_up" type="submit" value="Add">
+                            </form>
+
+                            <br>
+
+                    </div>
+                    
+           
+
+
+                    <script>
+                            const logOut = e => {
+                            
+                               location.replace("main.html")
+       
+                               return false;
+       
+                            }
+
+                            const back = e => {
+                            
+                            location.replace("all_expense.html")
+    
+                            return false;
+    
+                         }
+
+
+                    const add = e => {
+                    let min = 1;
+                    let max = 99999;
+
+
+                    let rightNow = new Date();
+                                let h = rightNow.getHours();
+                                let m = rightNow.getMinutes();
+                                let s = rightNow.getSeconds();
+                                let y = rightNow.getFullYear();
+                                let m1 = rightNow.getMonth();
+                                let d = rightNow.getDate();
+                                let session = 'AM';
+                                
+                                if (h > 12) {
+                                    h = h - 12;
+                                    session = 'PM';
+                                }
+
+                    let user= localStorage.getItem("user");
+                    let usr = JSON.parse(user);
+                                      
+                    let userid = usr.ID;
+                  //  alert(userid)
+                    let Created_On = d + " / " + m1 + " / " + y + ",  " + h  + " : "  +  m + " : " + s + session ; 
+                  //alert(Created_On)          
+                    let ID = Math.floor(Math.random() * (max * min) + min);
+                //    alert(ID)   
+                    let Description = document.querySelector("#Description").value;
+                //    alert(Description)   
+                    let Amount = document.querySelector("#Amount").value;
+                //    alert(Amount) 
+
+
+                    let doc = document.getElementById("Select");
+                     let Category = doc.options[doc.selectedIndex].value  
+                     console.log(Category)
+                   
+                  //  let Select = document.querySelector("#Select").value;
+                   
+                
+                  let specific_user = localStorage.getItem ("user");
+                    let spe_usr = JSON.parse(specific_user)
+
+                    let u_ID = spe_usr.ID;
+                    let c = u_ID.toString();
+                    
+                    let su = c + "All_Exp";
+                    
+                    let All_Exp = localStorage.getItem(su)
+                   
+
+                   if(All_Exp == null)
+                   {
+                    All_Exp = [];
+                    }
+                    else
+                    {
+                        All_Exp = JSON.parse(All_Exp);
+                    }
+
+
+                    let payload = {
+                        ID,
+                        userid,
+                        Description,
+                        Category,
+                        Amount,
+                        Created_On
+                    };
+    
+                   console.log(payload)
+    
+                   All_Exp.push(payload)
+    
+                    console.log(All_Exp)
+    
+                    All_Exp = JSON.stringify(All_Exp)
+    
+                    localStorage.setItem(su, All_Exp)
+                    localStorage.setItem("CurrentUser", JSON.stringify(payload));
+
+
+                            location.replace("all_expense.html")
+    
+                            return false;
+    
+                         }
+</Script>       
+            
+        
+
+
+    </body>
+
+</html>

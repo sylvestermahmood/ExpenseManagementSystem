@@ -1,0 +1,161 @@
+<html>
+    <head>
+        <title>
+            Generate Report
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="../CSS/gen_rep.css"/>
+    </head>
+
+
+    <body>
+        <div class="heading_div">
+            <div id = "heading_date" class="heading_date">
+              
+                
+                <script>
+                
+                let rightNow = new Date();
+                       let y = rightNow.getFullYear();
+            let m1 = rightNow.getMonth();
+            let d = rightNow.getDate();
+
+        
+            
+            let time = d + " / " + m1 + " / " + y ;
+            document.getElementById("heading_date").innerHTML = time;
+        
+                
+                </script>
+            </div>
+
+            <div class="heading">
+                <h1> My Expense</h1>
+            </div>
+
+        </div>
+
+            
+        </div>
+        
+                             
+                <div class="div_table">
+                        <table id="myTable" border="1px"> 
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Category</th>
+                                    <th>Created On</th>
+                                    <th> Actions</th>
+                                </tr>
+
+
+                    <script>
+                             window.print();
+                             let specific_user = localStorage.getItem ("user");
+                    let spe_usr = JSON.parse(specific_user)
+
+                    let u_ID = spe_usr.ID;
+                    let c = u_ID.toString();
+                    
+                    let su = c + "All_Exp";
+                            
+                            let users= localStorage.getItem(su);
+                          //  console.log(users);
+                            let cate = JSON.parse(users);
+                         //   console.log(cate);
+
+                
+                            for (let i=0; i<cate.length; i++)
+                            {
+                            document.write("<tr><td>" + cate[i].ID + "</td>"+"<td>" + cate[i].Description + "</td>" +
+                             "<td>" + cate[i].Amount + "</td><td>" + cate[i].Category + "</td><td>" + cate[i].Created_On + 
+                             "</td><td>" + "<input class='edit' type='submit' value='Edit'>" +
+                             " <input class='del' type='button' value='Delete' onclick='deleting(this)'>  " + "</td><tr>");
+                                
+                            } 
+
+                            let total_exp = 0;
+                            for (let i=0; i<cate.length; i++)
+                            {
+                                a = parseInt(cate[i].Amount)
+                                total_exp = total_exp + a;
+                            }
+
+                            document.write("Total Expense : ", total_exp + "<br><br><br>")
+
+                              
+                                            
+                </script>       
+
+
+
+
+                
+                    </table>
+                </div>
+
+                    </div>
+                    
+           
+
+
+                    <script>
+
+                        
+                
+
+                     const logOut = e => {
+                     
+                        location.replace("main.html")
+
+                        return false;
+
+                     }
+
+
+                     const add_exp = e => {
+                     
+                     location.replace("add_exp.html")
+
+                     return false;
+
+                  }
+
+
+                  const all_cat = e => {
+                     
+                     location.replace("all_cat.html")
+
+                     return false;
+
+                  }
+
+                  const date = e =>
+                  {
+                    let rightNow = new Date();
+                                let y = rightNow.getFullYear();
+                                let m1 = rightNow.getMonth();
+                                let d = rightNow.getDate();
+                               
+                                
+                                let Created_On = d + "/" + m1 + "/" + y ;
+                                document.getElementById("#date").innerHTML = Created_On;
+                                
+                  }
+
+
+
+                    
+                    
+                    </script>
+
+           
+            
+        
+
+
+    </body>
+
+</html>
